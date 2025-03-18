@@ -37,7 +37,7 @@ print(stats_table)
 print()
 print("Descriptive Statistics Using .describe():")
 print()
-data[['Level', 'T4', 'T3', 'T3adjusted', 'T4adjusted']].describe().round(2)
+print(data[['Level', 'T4', 'T3', 'T3adjusted', 'T4adjusted']].describe().round(2))
 
 duplicates = data[data.duplicated()]
 if len(duplicates) > 0:
