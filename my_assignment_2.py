@@ -38,3 +38,13 @@ print()
 print("Descriptive Statistics Using .describe():")
 print()
 data[['T3', 'T4', 'T3adjusted', 'T4adjusted']].describe()
+
+duplicates = data[data.duplicated()]
+if len(duplicates) > 0:
+    print(f"Number of repeated rows: {len(duplicates)}")
+    print("Repeated rows:")
+    duplicates = data[data.duplicated(keep=False)]
+    print(duplicates)
+else:
+    print("No repeated rows found.")
+
