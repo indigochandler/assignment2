@@ -19,4 +19,22 @@ data['T3'] = data['T3'].fillna(data.groupby('Level')['T3'].transform('mean')).ro
 data['T4'] = data['T4'].fillna(data.groupby('Level')['T4'].transform('mean')).round(1)
 data[['T3', 'T4']].isnull().sum()
 
-
+descriptive_statistics = {}
+for column in ['T3', 'T4', 'T3adjusted', 'T4adjusted']:
+    descriptive_statistics[column] = {
+        "count": data[column].count(),
+        "mean": data[column].mean(),
+        "std": data[column].std(),
+        "min": data[column].min(),
+        "25%": data[column].quantile(.25),
+        "50%": data[column].median(),
+        "75%": data[column].quantile(.75),
+        "max": data[column].max(),
+    }
+stats_table = pd.DataFrame(descriptive_statistics)
+print("Descriptive Statistics Table:")
+print(stats_table)
+print()
+print("Descriptive Statistics Using .describe():")
+print()
+data[['T3', 'T4', 'T3adjusted', 'T4adjusted']].describe()
