@@ -20,7 +20,7 @@ data['T4'] = data['T4'].fillna(data.groupby('Level')['T4'].transform('mean')).ro
 data[['T3', 'T4']].isnull().sum()
 
 descriptive_statistics = {}
-for column in ['T3', 'T4', 'T3adjusted', 'T4adjusted']:
+for column in ['Level', 'T4', 'T3', 'T3adjusted', 'T4adjusted']:
     descriptive_statistics[column] = {
         "count": data[column].count(),
         "mean": data[column].mean(),
@@ -31,13 +31,13 @@ for column in ['T3', 'T4', 'T3adjusted', 'T4adjusted']:
         "75%": data[column].quantile(.75),
         "max": data[column].max(),
     }
-stats_table = pd.DataFrame(descriptive_statistics)
+stats_table = pd.DataFrame(descriptive_statistics).round(2)
 print("Descriptive Statistics Table:")
 print(stats_table)
 print()
 print("Descriptive Statistics Using .describe():")
 print()
-data[['T3', 'T4', 'T3adjusted', 'T4adjusted']].describe()
+data[['Level', 'T4', 'T3', 'T3adjusted', 'T4adjusted']].describe().round(2)
 
 duplicates = data[data.duplicated()]
 if len(duplicates) > 0:
